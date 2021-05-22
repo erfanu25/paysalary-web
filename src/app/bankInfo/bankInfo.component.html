@@ -1,0 +1,135 @@
+<div class="col-md-12">
+  <div class="card card-container">
+    <form
+      *ngIf="!isSuccessful && !isUpdateSuccessful"
+      name="form"
+      (ngSubmit)="f.form.valid && onSubmit()"
+      #f="ngForm"
+      novalidate
+    >
+      <div class="form-group">
+        <label for="accountName">Account Name</label>
+        <input
+          type="text"
+          class="form-control"
+          name="accountName"
+          [(ngModel)]="form.accountName"
+          required
+          minlength="3"
+          maxlength="20"
+          #accountName="ngModel"
+        />
+        <div class="alert-danger" *ngIf="f.submitted && accountName.invalid">
+          <div *ngIf="accountName.errors.required">Account Name is required</div>
+          <div *ngIf="accountName.errors.minlength">
+            Account Name must be at least 3 characters
+          </div>
+          <div *ngIf="accountName.errors.maxlength">
+            Account Name must be at most 20 characters
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="accountNumber">Account Number</label>
+        <input
+          type="text"
+          class="form-control"
+          name="accountNumber"
+          [(ngModel)]="form.accountNumber"
+          required
+          minlength="3"
+          maxlength="20"
+          #accountNumber="ngModel"
+        />
+        <div class="alert-danger" *ngIf="f.submitted && accountNumber.invalid">
+          <div *ngIf="accountNumber.errors.required">Account Number is required</div>
+          <div *ngIf="accountNumber.errors.minlength">
+            Account Number must be at least 3 characters
+          </div>
+          <div *ngIf="accountNumber.errors.maxlength">
+            Account Number must be at most 20 characters
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="bankName">Bank Name</label>
+        <input
+          type="text"
+          class="form-control"
+          name="bankName"
+          [(ngModel)]="form.bankName"
+          required
+          minlength="3"
+          maxlength="20"
+          #bankName="ngModel"
+        />
+        <div class="alert-danger" *ngIf="f.submitted && bankName.invalid">
+          <div *ngIf="bankName.errors.required">Bank Name is required</div>
+          <div *ngIf="bankName.errors.minlength">
+            Bank Name must be at least 3 characters
+          </div>
+          <div *ngIf="bankName.errors.maxlength">
+            Bank Name must be at most 20 characters
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="branchName">Branch Name</label>
+        <input
+          type="text"
+          class="form-control"
+          name="branchName"
+          [(ngModel)]="form.branchName"
+          required
+          minlength="3"
+          maxlength="20"
+          #branchName="ngModel"
+        />
+        <div class="alert-danger" *ngIf="f.submitted && branchName.invalid">
+          <div *ngIf="branchName.errors.required">Branch Name is required</div>
+          <div *ngIf="branchName.errors.minlength">
+            Branch Name must be at least 3 characters
+          </div>
+          <div *ngIf="branchName.errors.maxlength">
+            Branch Name must be at most 20 characters
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="accountType">Account Type:</label>
+        <select class="form-control"
+                name="accountType"
+                [(ngModel)]="form.accountType"
+                #role="ngModel">
+          <option value="Current">Current</option>
+          <option value="Savings">Savings</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="ownerType">Owner Type:</label>
+        <select class="form-control"
+                name="ownerType"
+                [(ngModel)]="form.ownerType"
+                #role="ngModel">
+          <option value="Employee">Employee</option>
+          <option value="Employer">Employer</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary btn-block" *ngIf="!id">Add Bank Info</button>
+        <button class="btn btn-primary btn-block" *ngIf="id">Update Bank Info</button>
+      </div>
+
+      <div class="alert alert-warning" *ngIf="f.submitted">
+       <br />{{ errorMessage }}
+      </div>
+    </form>
+
+    <div class="alert alert-success" *ngIf="isSuccessful">
+      New Bank Info Added successfully!
+    </div>
+    <div class="alert alert-success" *ngIf="isUpdateSuccessful">
+      Bank Info updated successfully!
+    </div>
+  </div>
+</div>

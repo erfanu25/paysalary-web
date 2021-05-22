@@ -1,0 +1,5 @@
+export enum RULE {
+  ROLE_USER = 'USER',
+  ROLE_MODERATOR = 'SUPERVISOR',
+  ROLE_ADMIN = 'ADMIN'
+}

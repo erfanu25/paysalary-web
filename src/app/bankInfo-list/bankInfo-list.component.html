@@ -1,0 +1,36 @@
+<div class="container" >
+  <div *ngIf="content !== 'Error: Unauthorized'">
+    <p-table [value]="bankInfos" #dt dataKey="id" [globalFilterFields]="['accountNumber']" styleClass="p-datatable-customers">
+      <ng-template pTemplate="caption">
+        <div class="table-header">
+          List of Bank Infos
+          <span  style="margin-left: 30px">
+                    <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Search by Account Number" />
+        </span>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Account Name</th>
+          <th>Account Number</th>
+          <th>Account Type</th>
+          <th>Bank Name</th>
+          <th>Branch Name</th>
+          <th>Owner Type</th>
+          <th>Action</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-bank>
+        <tr>
+          <td>{{bank.accountName}}</td>
+          <td>{{bank.accountNumber}}</td>
+          <td>{{bank.accountType}}</td>
+          <td>{{bank.bankName}}</td>
+          <td>{{bank.branchName}}</td>
+          <td>{{bank.ownerType}}</td>
+          <td><p-button label="Edit" (onClick)="editProduct(bank)"></p-button></td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>

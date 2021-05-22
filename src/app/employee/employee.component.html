@@ -1,0 +1,167 @@
+<div class="col-md-12">
+  <div class="card card-container">
+    <img
+      id="profile-img"
+      src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
+      class="profile-img-card"
+    />
+    <form
+      *ngIf="!isSuccessful && !isUpdateSuccessful"
+      name="form"
+      (ngSubmit)="f.form.valid && onSubmit()"
+      #f="ngForm"
+      novalidate
+    >
+      <div class="form-group">
+        <label for="employeeId">Employee ID</label>
+        <input
+          type="text"
+          class="form-control"
+          employeeId="employeeId"
+          [(ngModel)]="form.employeeId"
+          [ngModelOptions]="{standalone: true}"
+          required
+          minlength="4"
+          maxlength="4"
+          #employeeId="ngModel"
+        />
+        <div class="alert-danger" *ngIf="f.submitted && employeeId.invalid">
+          <div *ngIf="employeeId.errors.required">Employee ID is required</div>
+          <div *ngIf="employeeId.errors.minlength">
+            Employee ID must be at least 4 characters
+          </div>
+          <div *ngIf="employeeId.errors.maxlength">
+            Employee ID must be at most 4 characters
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input
+          type="text"
+          class="form-control"
+          name="name"
+          [(ngModel)]="form.name"
+          [ngModelOptions]="{standalone: true}"
+          required
+          minlength="3"
+          maxlength="20"
+          #name="ngModel"
+        />
+        <div class="alert-danger" *ngIf="f.submitted && name.invalid">
+          <div *ngIf="name.errors.required">Name is required</div>
+          <div *ngIf="name.errors.minlength">
+            Name must be at least 3 characters
+          </div>
+          <div *ngIf="name.errors.maxlength">
+            Name must be at most 20 characters
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="address">Address</label>
+        <input
+          type="text"
+          class="form-control"
+          address="address"
+          [(ngModel)]="form.address"
+          [ngModelOptions]="{standalone: true}"
+          required
+          minlength="3"
+          maxlength="20"
+          #address="ngModel"
+        />
+        <div class="alert-danger" *ngIf="f.submitted && address.invalid">
+          <div *ngIf="address.errors.required">Address is required</div>
+          <div *ngIf="address.errors.minlength">
+            Address must be at least 3 characters
+          </div>
+          <div *ngIf="address.errors.maxlength">
+            Address must be at most 20 characters
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="mobileNo">Mobile No</label>
+        <input
+          class="form-control"
+          mobileNo="mobileNo"
+          [(ngModel)]="form.mobileNo"
+          name="mobileNo"
+          required
+          minlength="8"
+          maxlength="20"
+          #mobileNo="ngModel"
+        />
+        <div class="alert-danger" *ngIf="f.submitted && mobileNo.invalid">
+          <div *ngIf="mobileNo.errors.required">Mobile No is required</div>
+          <div *ngIf="mobileNo.errors.minlength">
+            Mobile No must be at least 8 characters
+          </div>
+          <div *ngIf="mobileNo.errors.maxlength">
+            Mobile No must be at most 20 characters
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="accountNumber">Account No</label>
+        <p-dropdown [options]="accounts" [(ngModel)]="form.accountNumber" name="accountNumber"
+                    [ngModelOptions]="{standalone: true}" required  #accountNumber="ngModel"
+                    appendTo="body">
+        </p-dropdown>
+        <div class="alert-danger" *ngIf="f.submitted && accountNumber.invalid">
+          <div *ngIf="accountNumber.errors.required">Account No is required</div>
+          <div *ngIf="accountNumber.errors.minlength">
+            Account No must be at least 4 characters
+          </div>
+          <div *ngIf="accountNumber.errors.maxlength">
+            Account No must be at most 20 characters
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="gender">Gender:</label>
+        <select class="form-control"
+                name="gender"
+                [(ngModel)]="form.gender"
+                [ngModelOptions]="{standalone: true}"
+                #gender="ngModel">
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="gradeNo">Grade No:</label>
+        <select class="form-control"
+                name="gradeNo"
+                [(ngModel)]="form.gradeNo"
+                [ngModelOptions]="{standalone: true}"
+                #gradeNo="ngModel">
+          <option value="One">One</option>
+          <option value="Two">Two</option>
+          <option value="Three">Three</option>
+          <option value="Four">Four</option>
+          <option value="Five">Five</option>
+          <option value="Six">Six</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <button class="btn btn-primary btn-block" *ngIf="!id">Create Employee</button>
+        <button class="btn btn-primary btn-block" *ngIf="id">Update Employee</button>
+      </div>
+
+      <div class="alert alert-warning" *ngIf="f.submitted">
+        <br />{{ errorMessage }}
+      </div>
+    </form>
+
+    <div class="alert alert-success" *ngIf="isSuccessful">
+      New Employee Created successfully!
+    </div>
+    <div class="alert alert-success" *ngIf="isUpdateSuccessful">
+      User Employee successfully!
+    </div>
+  </div>
+</div>

@@ -1,0 +1,29 @@
+<div id="app">
+  <nav class="navbar navbar-expand navbar-dark bg-dark">
+    <a href="#" class="navbar-brand">Pay Salary</a>
+    <ul class="navbar-nav mr-auto" routerLinkActive="active">
+      <li class="nav-item">
+        <a href="/employeeList" class="nav-link" routerLink="employeeList">Employees</a>
+      </li>
+      <li class="nav-item">
+        <a href="/bankAccounts" class="nav-link" routerLink="bankAccounts">Bank Accounts</a>
+      </li>
+      <li class="nav-item">
+        <a href="/disburse" class="nav-link" routerLink="disburse">Disburse Salary</a>
+      </li>
+    </ul>
+
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a href="/addEmployee" class="nav-link" routerLink="addEmployee">Add Employee</a>
+      </li>
+      <li class="nav-item">
+        <a href="/addBankInfo" class="nav-link" routerLink="addBankInfo">Add Bank Account</a>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
+</div>

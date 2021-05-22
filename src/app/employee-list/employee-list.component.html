@@ -1,0 +1,40 @@
+<div class="container" >
+  <div *ngIf="content !== 'Error: Unauthorized'">
+  <p-table [value]="employees" #dt dataKey="id" [globalFilterFields]="['name']" styleClass="p-datatable-customers">
+    <ng-template pTemplate="caption">
+      <div class="table-header">
+        List of Employees
+        <span  style="margin-left: 30px">
+                    <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Search by Name" />
+        </span>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Employee ID</th>
+        <th>Name</th>
+        <th>Gender</th>
+        <th>Grade</th>
+        <th>Address</th>
+        <th>Mobile No.</th>
+        <th>Account</th>
+        <th>Salary</th>
+        <th>Action</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-employee>
+      <tr>
+        <td>{{employee.employeeId}}</td>
+        <td>{{employee.name}}</td>
+        <td>{{employee.gender}}</td>
+        <td>{{employee.gradeNo}}</td>
+        <td>{{employee.address}}</td>
+        <td>{{employee.mobileNo}}</td>
+        <td>{{employee.accountNumber}}</td>
+        <td>{{employee.salary}}</td>
+        <td><p-button label="Edit" (onClick)="editEmployee(employee)"></p-button></td>
+      </tr>
+    </ng-template>
+  </p-table>
+  </div>
+</div>

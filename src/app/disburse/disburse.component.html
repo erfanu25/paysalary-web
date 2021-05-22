@@ -1,0 +1,133 @@
+<div class="col-md-12">
+  <div class="card card-container">
+    <h3>Add Balance</h3>
+    <form
+      name="form"
+      (ngSubmit)="f.form.valid && onBalanceSubmit()"
+      #f="ngForm"
+      novalidate
+    >
+      <div class="form-group">
+        <label for="accountNumber">Account No</label>
+        <p-dropdown [options]="accounts" [(ngModel)]="form.accountNumber" name="accountNumber"
+                    [ngModelOptions]="{standalone: true}" required  #accountNumber="ngModel" (ngModelChange)="getBalance($event)"
+                    appendTo="body">
+        </p-dropdown>
+        <div class="alert-danger" *ngIf="f.submitted && accountNumber.invalid">
+          <div *ngIf="accountNumber.errors.required">Account No is required</div>
+          <div *ngIf="accountNumber.errors.minlength">
+            Account No must be at least 4 characters
+          </div>
+          <div *ngIf="accountNumber.errors.maxlength">
+            Account No must be at most 20 characters
+          </div>
+        </div>
+        <label for="accountBalance">Balance</label>
+        <input [(ngModel)]="accountBalance" [ngModelOptions]="{standalone: true}" disabled>
+      </div>
+      <div class="form-group">
+        <label for="balance">Add Balance</label>
+        <input
+          type="number"
+          class="form-control"
+          name="balance"
+          [(ngModel)]="form.balance"
+          required
+          #balance="ngModel"
+        />
+        <div class="alert-danger" *ngIf="f.submitted && balance.invalid">
+          <div *ngIf="balance.errors.required">Balance is required</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary btn-block">Add Balance</button>
+      </div>
+
+<!--      <div class="alert alert-warning" *ngIf="f.submitted">-->
+<!--       <br />{{ errorMessage }}-->
+<!--      </div>-->
+    </form>
+
+    <div class="alert alert-success" *ngIf="isSuccessful">
+      Balance Added successfully!
+    </div>
+  </div>
+</div>
+
+<div class="col-md-12">
+  <div class="card card-container">
+    <h3>Set Basic Salary of Lowest Grade</h3>
+    <form
+      name="form"
+      (ngSubmit)="f2.form.valid && onBasicSalarySubmit()"
+      #f2="ngForm"
+      novalidate
+    >
+      <div class="form-group">
+        <label for="salary">Basic Salary</label>
+        <input
+          type="number"
+          class="form-control"
+          name="salary"
+          [(ngModel)]="form.salary"
+          required
+          #salary="ngModel"
+        />
+        <div class="alert-danger" *ngIf="f2.submitted && salary.invalid">
+          <div *ngIf="salary.errors.required">Balance is required</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary btn-block">Set Basic</button>
+      </div>
+
+<!--      <div class="alert alert-warning" *ngIf="f2.submitted">-->
+<!--        <br />{{ basicMessage }}-->
+<!--      </div>-->
+    </form>
+
+    <div class="alert alert-success" *ngIf="isBasicSuccessful">
+      Basic Salary Set successfully!
+    </div>
+  </div>
+</div>
+
+<div class="col-md-12">
+  <div class="card card-container">
+    <h3>Disburse Salary</h3>
+    <form
+      name="form"
+      (ngSubmit)="f3.form.valid && salaryDisburse()"
+      #f3="ngForm"
+      novalidate
+    >
+      <div class="form-group">
+        <label for="accountNumber">Account No</label>
+        <p-dropdown [options]="accounts" [(ngModel)]="form.accountNumber" name="accountNumber"
+                    [ngModelOptions]="{standalone: true}" required  #accountNumber="ngModel"
+                    appendTo="body">
+        </p-dropdown>
+        <div class="alert-danger" *ngIf="f3.submitted && accountNumber.invalid">
+          <div *ngIf="accountNumber.errors.required">Account No is required</div>
+          <div *ngIf="accountNumber.errors.minlength">
+            Account No must be at least 4 characters
+          </div>
+          <div *ngIf="accountNumber.errors.maxlength">
+            Account No must be at most 20 characters
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary btn-block">Disburse Salary</button>
+      </div>
+
+            <div class="alert alert-warning" *ngIf="f3.submitted">
+             <br />{{ errorMessage }}
+            </div>
+    </form>
+
+    <div class="alert alert-success" *ngIf="isSuccessful">
+      Salary Disburse successfully!
+    </div>
+  </div>
+</div>
